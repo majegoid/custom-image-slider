@@ -11,6 +11,7 @@ export function createImageSlider(
   transitionDelayMs = 5000
 ) {
   const imageSlides = [];
+  const slideIndicators = [];
   let activeImageSlide = null;
   let nextSlideIntervalTimerId = null;
 
@@ -57,13 +58,17 @@ export function createImageSlider(
     imageSlides.push(image); //add image to image array
     imageContainer.appendChild(image);
   }
-  activeImageSlide = imageSlides[0]; //set initial image slide to be the first one
-  activeImageSlide.classList.add('visible'); //make initial image visible
 
   function changeActiveImageSlide(imageSlideIndex = 0) {
+    // change image slide classes
     const nextImageSlide = imageSlides[imageSlideIndex];
     activeImageSlide.classList.remove('visible');
     nextImageSlide.classList.add('visible');
+    // change image slide indicator classes
+    let previousIndex = imageSlides.indexOf(activeImageSlide);
+    slideIndicators[previousIndex].classList.remove('active');
+    slideIndicators[imageSlideIndex].classList.add('active');
+    // assign next image slide as the active image slide
     activeImageSlide = nextImageSlide;
     resetMoveToNextSlideTimer();
   }
@@ -77,6 +82,21 @@ export function createImageSlider(
     changeActiveImageSlide(nextSlideIndex);
   };
   imageSlider.appendChild(nextSlideButton);
+
+  // add active slide indicator buttons
+  const slideIndicatorContainer = document.createElement('div');
+  slideIndicatorContainer.classList.add('slide-indicator-container');
+  imageSlider.appendChild(slideIndicatorContainer);
+  for (const slideIndex in imageSlides) {
+    const slideIndicatorButton = document.createElement('button');
+    slideIndicatorButton.classList.add('slide-indicator-button');
+    slideIndicatorButton.textContent = +slideIndex + 1;
+    slideIndicatorButton.onclick = () => {
+      changeActiveImageSlide(slideIndex);
+    };
+    slideIndicators.push(slideIndicatorButton);
+    slideIndicatorContainer.appendChild(slideIndicatorButton);
+  }
 
   function resetMoveToNextSlideTimer() {
     clearInterval(nextSlideIntervalTimerId);
@@ -93,6 +113,11 @@ export function createImageSlider(
   }
 
   startMoveToNextSlideTimer(transitionDelayMs);
+
+  // setup
+  activeImageSlide = imageSlides[0]; //set initial image slide to be the first one
+  activeImageSlide.classList.add('visible'); //make initial image visible
+  slideIndicators[0].classList.add('active'); //make initial image indicator active
 
   return imageSlider;
 }

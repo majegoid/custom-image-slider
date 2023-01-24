@@ -16,6 +16,6 @@ rootElem.appendChild(
       // { url: img4, description: 'Image' },
       { url: img5, description: 'Image' },
     ],
-    2500
+    5000
   )
 );
