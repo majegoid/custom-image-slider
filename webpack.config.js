@@ -18,7 +18,7 @@ module.exports = {
   target: target, //build for the web with or without backwards compatibility (browserslist)
   entry: {
     index: './src/index.js',
-    createDropdown: './src/createDropdown.js',
+    createImageSlider: './src/createImageSlider.js',
   },
   output: {
     filename: '[name].js',
