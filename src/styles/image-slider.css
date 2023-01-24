@@ -11,7 +11,6 @@
   width: var(--image-slider-container-width);
 
   font-family: Arial, Helvetica, sans-serif;
-
   background-color: black;
 }
 
@@ -26,10 +25,10 @@
   width: 50px;
   border-radius: 50%;
 
-  background-color: var(--button-background-color);
-  color: white;
   font-size: 24px;
   font-weight: bold;
+  background-color: var(--button-background-color);
+  color: white;
 }
 
 .image-slider-button:hover {
@@ -84,8 +83,6 @@
   position: absolute;
   bottom: 0;
 
-  /* background-color: var(--button-background-color); */
-
   width: 100%;
   height: 50px;
 }
@@ -104,6 +101,7 @@
   font-weight: bold;
   background-color: var(--button-background-color);
   color: white;
+  transition: 0.4s;
 }
 
 .slide-indicator-button:hover {
@@ -116,5 +114,5 @@
 }
 
 .slide-indicator-button.active {
-  background-color: var(--button-active-background-color);
+  background-color: red;
 }
