@@ -8,6 +8,9 @@ export function createImageSlider(
     },
   ]
 ) {
+  const imageSlides = [];
+  let activeImageSlide = null;
+
   // <div class="image-slider">
   //   <button class="image-slider-button previous-slide-button"></button>
   //   <div>
@@ -40,12 +43,30 @@ export function createImageSlider(
     image.classList = 'image-slide';
     image.src = imageData.url;
     image.alt = imageData.description;
+    imageSlides.push(image); //add image to image array
     imageContainer.appendChild(image);
+  }
+  activeImageSlide = imageSlides[0]; //set initial image slide to be the first one
+  activeImageSlide.classList.add('visible');
+
+  function changeActiveImageSlide(imageSlideIndex = 0) {
+    activeImageSlide.classList.remove('visible');
+    const nextImageSlide = imageSlides[imageSlideIndex];
+    nextImageSlide.classList.add('visible');
+    activeImageSlide = nextImageSlide;
   }
 
   const nextSlideButton = document.createElement('button');
   nextSlideButton.classList.add('image-slider-button', 'next-slide-button');
   nextSlideButton.textContent = '>';
+  nextSlideButton.onclick = () => {
+    console.log('next');
+    console.log(activeImageSlide);
+
+    const activeSlideIndex = imageSlides.indexOf(activeImageSlide);
+    const nextSlideIndex = (activeSlideIndex + 1) % imageSlides.length;
+    changeActiveImageSlide(nextSlideIndex);
+  };
   imageSlider.appendChild(nextSlideButton);
 
   return imageSlider;

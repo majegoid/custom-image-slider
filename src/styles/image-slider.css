@@ -7,7 +7,9 @@
   height: var(--image-slider-container-height);
   width: var(--image-slider-container-width);
 
-  background-color: red;
+  font-family: Arial, Helvetica, sans-serif;
+
+  background-color: black;
 }
 
 .image-slider-button {
@@ -15,6 +17,7 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  z-index: 10;
 
   height: 50px;
   width: 50px;
@@ -42,13 +45,25 @@
 
 .image-container {
   display: inline-block;
+  position: relative;
   overflow: hidden;
 
+  height: var(--image-slider-container-height);
   width: var(--image-slider-container-width);
 }
 
 .image-slide {
-  /* height: 100%; */
+  position: absolute;
+  top: 0;
+  left: 0;
+
   width: 100%;
+
   object-fit: contain;
+  opacity: 0;
+  transition: 0.4s;
+}
+
+.visible {
+  opacity: 1;
 }
