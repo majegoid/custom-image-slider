@@ -55,11 +55,11 @@ export function createImageSlider(
     imageContainer.appendChild(image);
   }
   activeImageSlide = imageSlides[0]; //set initial image slide to be the first one
-  activeImageSlide.classList.add('visible');
+  activeImageSlide.classList.add('visible'); //make initial image visible
 
   function changeActiveImageSlide(imageSlideIndex = 0) {
-    activeImageSlide.classList.remove('visible');
     const nextImageSlide = imageSlides[imageSlideIndex];
+    activeImageSlide.classList.remove('visible');
     nextImageSlide.classList.add('visible');
     activeImageSlide = nextImageSlide;
   }

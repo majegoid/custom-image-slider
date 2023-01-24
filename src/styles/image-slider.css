@@ -35,6 +35,10 @@
   background-color: rgba(64, 64, 64, 0.8);
 }
 
+.image-slider-button:active {
+  background-color: rgba(127, 127, 127, 0.8);
+}
+
 .previous-slide-button {
   left: 25px;
 }
