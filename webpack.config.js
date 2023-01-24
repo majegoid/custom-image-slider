@@ -34,6 +34,15 @@ module.exports = {
   module: {
     //how to treat the files in this app (are they importable code, css, images, or other files?)
     rules: [
+      {
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        type: 'asset',
+        parser: {
+          dataUrlCondition: {
+            maxSize: 30 * 1024,
+          },
+        },
+      },
       // css imported into JS files will be turned into a main.css bundle
       {
         test: /\.css$/i,
