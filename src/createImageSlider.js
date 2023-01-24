@@ -1,15 +1,18 @@
 import './styles/image-slider.css';
 
+/** Takes an array of image objects: string url, string description */
 export function createImageSlider(
   imageDataList = [
     {
       url: 'images/wallhaven-8xz1mk.jpg',
       description: 'Image 1',
     },
-  ]
+  ],
+  transitionDelayMs = 5000
 ) {
   const imageSlides = [];
   let activeImageSlide = null;
+  let nextSlideIntervalTimerId = null;
 
   // <div class="image-slider">
   //   <button class="image-slider-button previous-slide-button"></button>
@@ -62,6 +65,7 @@ export function createImageSlider(
     activeImageSlide.classList.remove('visible');
     nextImageSlide.classList.add('visible');
     activeImageSlide = nextImageSlide;
+    resetMoveToNextSlideTimer();
   }
 
   const nextSlideButton = document.createElement('button');
@@ -73,6 +77,22 @@ export function createImageSlider(
     changeActiveImageSlide(nextSlideIndex);
   };
   imageSlider.appendChild(nextSlideButton);
+
+  function resetMoveToNextSlideTimer() {
+    clearInterval(nextSlideIntervalTimerId);
+    startMoveToNextSlideTimer(transitionDelayMs);
+  }
+
+  // every 5 seconds, go to the next slide
+  function startMoveToNextSlideTimer(delayMilliseconds = 5000) {
+    nextSlideIntervalTimerId = setInterval(() => {
+      const activeSlideIndex = imageSlides.indexOf(activeImageSlide);
+      const nextSlideIndex = (activeSlideIndex + 1) % imageSlides.length;
+      changeActiveImageSlide(nextSlideIndex);
+    }, delayMilliseconds);
+  }
+
+  startMoveToNextSlideTimer(transitionDelayMs);
 
   return imageSlider;
 }

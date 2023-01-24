@@ -8,11 +8,14 @@ import './styles/index.css';
 
 const rootElem = document.querySelector('div#root');
 rootElem.appendChild(
-  createImageSlider([
-    { url: img1, description: 'Image' },
-    { url: img2, description: 'Image' },
-    // { url: img3, description: 'Image' },
-    // { url: img4, description: 'Image' },
-    { url: img5, description: 'Image' },
-  ])
+  createImageSlider(
+    [
+      { url: img1, description: 'Image' },
+      { url: img2, description: 'Image' },
+      // { url: img3, description: 'Image' },
+      // { url: img4, description: 'Image' },
+      { url: img5, description: 'Image' },
+    ],
+    2500
+  )
 );
