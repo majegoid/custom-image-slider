@@ -32,6 +32,14 @@ export function createImageSlider(
     'previous-slide-button'
   );
   previousSlideButton.textContent = '<';
+  previousSlideButton.onclick = () => {
+    const activeSlideIndex = imageSlides.indexOf(activeImageSlide);
+    let nextSlideIndex = activeSlideIndex - 1;
+    if (nextSlideIndex < 0) {
+      nextSlideIndex = imageSlides.length - 1;
+    }
+    changeActiveImageSlide(nextSlideIndex);
+  };
   imageSlider.appendChild(previousSlideButton);
 
   const imageContainer = document.createElement('div');
@@ -60,9 +68,6 @@ export function createImageSlider(
   nextSlideButton.classList.add('image-slider-button', 'next-slide-button');
   nextSlideButton.textContent = '>';
   nextSlideButton.onclick = () => {
-    console.log('next');
-    console.log(activeImageSlide);
-
     const activeSlideIndex = imageSlides.indexOf(activeImageSlide);
     const nextSlideIndex = (activeSlideIndex + 1) % imageSlides.length;
     changeActiveImageSlide(nextSlideIndex);
