@@ -115,5 +115,5 @@
 }
 
 .slide-indicator-button.active {
-  background-color: red;
+  background-color: var(--button-active-background-color);
 }
