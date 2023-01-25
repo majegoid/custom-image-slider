@@ -7,15 +7,16 @@ import img5 from './images/wallhaven-ym681g.jpg';
 import './styles/index.css';
 
 const rootElem = document.querySelector('div#root');
-rootElem.appendChild(
-  createImageSlider(
-    [
-      { url: img1, description: 'Image' },
-      { url: img2, description: 'Image' },
-      // { url: img3, description: 'Image' },
-      // { url: img4, description: 'Image' },
-      { url: img5, description: 'Image' },
-    ],
-    5000
-  )
+const imageSlider = createImageSlider(
+  [
+    { url: img1, description: 'Image' },
+    { url: img2, description: 'Image' },
+    // { url: img3, description: 'Image' },
+    // { url: img4, description: 'Image' },
+    { url: img5, description: 'Image' },
+  ],
+  5000,
+  '500px',
+  '500px'
 );
+rootElem.appendChild(imageSlider);

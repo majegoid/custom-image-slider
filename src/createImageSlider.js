@@ -8,7 +8,9 @@ export function createImageSlider(
       description: 'Image 1',
     },
   ],
-  transitionDelayMs = 5000
+  transitionDelayMs = 5000,
+  height = '500px',
+  width = '100%'
 ) {
   const imageSlides = [];
   const slideIndicators = [];
@@ -29,6 +31,8 @@ export function createImageSlider(
 
   const imageSlider = document.createElement('div');
   imageSlider.className = 'image-slider';
+  imageSlider.style.height = height;
+  imageSlider.style.width = width;
 
   const previousSlideButton = document.createElement('button');
   previousSlideButton.classList.add(
